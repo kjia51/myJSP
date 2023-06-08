@@ -1,0 +1,39 @@
+<%@page import="common.Person"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setAttribute("request_str", "request영역에 문자열을 저장");
+	request.setAttribute("request_person", new Person("민수", 30));
+%>
+	<h2>request영역의 속성값 읽어오기</h2>
+<%
+	String request_str = request.getAttribute("request_str").toString();
+	Person request_person = (Person)request.getAttribute("request_person");
+	String request_int = (String)request.getAttribute("request_int");
+%>
+
+	<ul>
+		<li><%=request_str %></li>
+		<li><%=request_person.getName() %>, <%=request_person.getAge() %></li>
+		<li><%=request_int %></li>		
+	</ul>
+	<h2>request영역의 속성값 삭제하기</h2>
+<%
+	request.removeAttribute("request_str");
+	request.removeAttribute("request_int");
+%>
+	request_str 삭제 : <%=request.getAttribute("request_str") %>
+	request_int 삭제 : <%=request.getAttribute("request_int") %>
+	<h2>foward된 페이지에서 request 영역 속성 값 읽기</h2>
+	<%
+		request.getRequestDispatcher("RequestFoward.jsp?name=하니&age=17").forward(request, response);
+	%>
+</body>
+</html>

@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,11 +11,16 @@
 
 <% 
 
-	String id = request.getParameter("user_id");	
-	String pw = request.getParameter("user_pwd");
+	String id = request.getParameter("userid");	
+	String pw = request.getParameter("userpw");
+	String saveYN = request.getParameter("save_check");
 
 	out.print("id : "+id+"<br>");
 	out.print("pw : "+pw+"<br>");
+	
+	if("Y".equals(saveYN)){
+		CookieManager.makeCookie(response, "id", id, 3600);
+	}
 	
 	// id != null && id.equals("abc")
 	if("abc".equals(id) && "123".equals(pw)){

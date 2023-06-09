@@ -49,6 +49,7 @@
             <th id='th1'><label for="id">ID</label></th>
             <td><input type="text" name="id" required ></td>
             <td><button type="submit">중복확인</button></td>
+            <td><input type="checkbox">아이디저장</td>
         </tr>
         <tr>
             <th><label for="password">비밀번호</label></th>

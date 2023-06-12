@@ -1,0 +1,22 @@
+D:\apache-tomcat-9.0.65\conf에 들어가서 설정을 바꿔줘야함!
+bin 실행 config 설정
+
+
+context.xml==================       
+<Resource name="jdbc/myoracle" auth="Container"
+              type="javax.sql.DataSource" 
+              driverClassName="oracle.jdbc.OracleDriver"
+              url="jdbc:oracle:thin:@localhost:1521:orcl"
+              username="jsp" 
+              password="1234" 
+              maxTotal="20" 
+              maxIdle="10"
+              maxWaitMillis="-1"/>   
+
+web.xml===========================
+    <resource-ref>
+	 <description>Oracle Datasource example</description>
+	 <res-ref-name>jdbc/myoracle</res-ref-name>
+	 <res-type>javax.sql.DataSource</res-type>
+	 <res-auth>Container</res-auth>
+	</resource-ref>

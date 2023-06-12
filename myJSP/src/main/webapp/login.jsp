@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,9 @@
 <h3><로그인></h3>
 		<aside id='rightside'>
               <div class='side1'>
+              <%
+          		String id = CookieManager.readCookie(request, "userid");
+              %>
                    <% 
 	                    String loginErr = request.getParameter("loginErr");
 					    if("Y".equals(loginErr)){
@@ -41,6 +45,7 @@
                         </div>
                     </div>
                     <div id='info'>
+                        <input type="checkbox" name="save_check" value="Y" <%= !id.equals("")?"checked":""%>>아이디 저장하기<br>
                         <a href="">회원가입</a>
                         <a href="">ID찾기</a>
                         <a href="">PW찾기</a>

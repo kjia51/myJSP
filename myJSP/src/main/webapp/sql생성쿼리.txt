@@ -1,0 +1,48 @@
+sql 생성 쿼리
+--MEMBER 테이블 생성
+create table member(
+id varchar2(10) NOT NULL PRIMARY KEY,
+pass varchar2(10) NOT NULL,
+name varchar2(30) NOT NULL,
+regidate date DEFAULT SYSDATE NOT NULL
+);
+
+--member 에 값 넣기
+INSERT INTO MEMBER VALUES('USER01','1234','효섭',Sysdate);
+select * from member;
+--DDL 구문이라 자동 COMMIT
+
+--BOARD 테이블 생성
+create table board(
+num number NOT NULL PRIMARY KEY,
+title varchar2(200) NOT NULL,
+content varchar2(2000) NOT NULL,
+id varchar2(10) NOT NULL,
+postdate date default sysdate NOT NULL,
+visitcount number(6),
+CONSTRAINT BOARD_MEM_FK FOREIGN KEY(id) REFERENCES MEMBER(ID) 
+);
+
+--시퀀스 생성
+CREATE SEQUENCE SEQ_BOARD_NUM
+INCREMENT BY 1
+START WITH 1
+MINVALUE 1
+NOMAXVALUE 
+NOCYCLE
+NOCACHE;
+
+--comment 달기
+comment on table member is '회원';
+comment on column member.id is '아이디';
+comment on column member.pass is '패스워드';
+comment on column member.name is '이름';
+comment on column member.regidate is '가입날짜';
+
+comment on table board is '게시판';
+comment on column board.num is '일련번호';
+comment on column board.title is '제목';
+comment on column board.content is '내용';
+comment on column board.id is '작성자 아이디';
+comment on column board.postdate is '작성일';
+comment on column board.visitcount is '조회수';

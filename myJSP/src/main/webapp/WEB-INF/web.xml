@@ -48,4 +48,10 @@
 		<error-code>500</error-code>
 		<location>/내장객체/Exception.jsp</location>
 	</error-page>
+	
+	<!-- 세션 유지시간을 분 단위로 설정 -->
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+	
 </web-app>

@@ -8,11 +8,7 @@
 </head>
 <body>
 <%
-//세션무효화
-session.invalidate();
-//세션아이디 새로 발급
-request.getSession(true);
-response.sendRedirect("login.jsp");
+	Integer.parseInt("a");
 %>
 </body>
 </html>

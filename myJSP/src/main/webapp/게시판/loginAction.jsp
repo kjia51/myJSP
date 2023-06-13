@@ -1,4 +1,5 @@
 
+<%@page import="utils.CookieManager"%>
 <%@page import="dto.Member"%>
 <%@page import="dao.MemberDao"%>
 
@@ -15,11 +16,15 @@
 	<% 
 	String id = request.getParameter("userid"); 
 	String pw = request.getParameter("userpw");
-	
+	String saveYN = request.getParameter("save_check");
 	MemberDao dao = new MemberDao();
 	Member member = dao.login(id, pw);
 	
-
+	if("Y".equals(saveYN)){
+		// userID, 사용자아이디
+		//CookieManager를 이용하여 쿠키를 생성 후 응답객체에 담아줌
+		CookieManager.makeCookie(response, "userid", id, 3600);
+	}
 
 	
 	if(member!=null && !member.getId().equals("")){

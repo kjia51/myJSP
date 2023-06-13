@@ -37,7 +37,7 @@
 				<form action="./loginAction.jsp" method="post">
                     <div class='loginbox'>
                         <div id='login'>
-                            <input type="text" name="userid" id="userid" placeholder='ID를 입력해주세요.'>
+                            <input type="text" name="userid" id="userid" placeholder='ID를 입력해주세요.' value="<%=id%>" required>
                             <input type="password" name="userpw" id="userpw" placeholder='PW를 입력해주세요.'>
                         </div>
                         <div id='button'>

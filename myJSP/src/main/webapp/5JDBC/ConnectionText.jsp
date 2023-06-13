@@ -1,6 +1,7 @@
+<%@page import="common.ConnectionUtil"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="common.ConnectionUtil"%>
+
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -17,8 +18,6 @@ border: 1px solid black;
 </style>
 </head>
 <body>
-	
-	
 	<h2>회원목록 조회</h2>
 	<table border=1>
 	

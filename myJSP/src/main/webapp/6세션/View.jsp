@@ -18,7 +18,7 @@ text-align: center;
 	BoardDao dao = new BoardDao(); 
 	Board board = dao.selectOne(request.getParameter("num"));
 	dao.update(request.getParameter("num"));
-
+	request.getParameter("content");
 	
 	
 	if(board==null){
@@ -43,6 +43,7 @@ text-align: center;
 </script>
 </head>
 <body>
+<jsp:include page="Link.jsp" />
 <h2>회원제 게시판 - 상세보기 View</h2>
 <form action="">
 <table border="1" width="90%">
@@ -64,16 +65,20 @@ text-align: center;
 </tr>
 <tr>
 <td>내용</td>
-<td colspan="3"><%=board.getContent()%></td>
+<td colspan="3"><%=board.getContent().replace("\r\n","<br/>") %></td>
 </tr>
 <tr id="fifth">
-<td colspan="4" ><input type="button" value="목록보기">
+<td colspan="4" >
     <% 
-    if(session.getAttribute("user_id")!=null){
+    if(session.getAttribute("user_id")!=null && session.getAttribute("user_id").equals(board.getId())){
     %>
-<input type="button" value="수정하기" onclick="locatin.href='Edit.jsp?num=<%=board.getNum() %>'">
+<input type="button" value="수정하기" onclick="location.href='Edit.jsp?num=<%=board.getNum()%>'">
 <input type="button" value="삭제하기" onclick="deletePost()">
-<% } %>
+<% }%>
+<% 
+	String pageNo = request.getParameter("pageNo")==null? "1" : request.getParameter("pageNo");
+%>
+<input type="button" value="목록보기" onclick="location.href='List.jsp?pageNo=<%=pageNo %>'">
 </td>
 </tr>
 </table>

@@ -18,7 +18,7 @@ Member member = dao.login(id, pw);
 
 if(member!=null){
 	//로그인 성공 -> 세션에 member 객체 저장
-	session.setAttribute("user_id", member.getName());
+	session.setAttribute("user_id", member.getId());
 	session.setAttribute("member", member);
 	
 	response.sendRedirect("LoginForm.jsp");

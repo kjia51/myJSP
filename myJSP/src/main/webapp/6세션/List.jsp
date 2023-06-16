@@ -1,3 +1,4 @@
+<%@page import="dto.Criteria"%>
 <%@page import="dto.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.BoardDao"%>
@@ -17,16 +18,30 @@ text-align: center;
 #writer{
 float: right;
 }
+input[type='text']{
+	visibility: hidden;
+}
+.menu-active {
+    background: orange;
+}
+
 </style>
 </head>
 <body>
 <%
-BoardDao dao = new BoardDao();
 String searchField = request.getParameter("searchField");
 String searchWord = request.getParameter("searchWord");
+String pageNo = request.getParameter("pageNo");
+
 searchWord = searchWord == null? "" : searchWord;
-List<Board> list = dao.getList(searchField, searchWord);
-int count = dao.getTotalCount(searchField, searchWord);
+
+Criteria criteria = new Criteria(searchField, searchWord, pageNo);
+
+BoardDao dao = new BoardDao();
+List<Board> list = dao.getListPage(criteria);
+int count = dao.getTotalCount(criteria);
+
+
 
 //검색어가 null이 아니면 검색 기능을 추가!
 //out.print("검색어 : " + searchField+"<br>");
@@ -36,7 +51,8 @@ int count = dao.getTotalCount(searchField, searchWord);
 %>
 <h2>목록보기(list)</h2>
 총 건수 : <%=count%>
-<form>
+<form name='searchForm'>
+<input type='text' name='pageNo' value='<%=criteria.getPageNo()%>'>
 <table border=1 width="90%">
 <tr>
 <td>
@@ -76,7 +92,7 @@ for(Board board : list) {
 %>	
 <tr>
 <td><%=board.getNum()%></td>
-<td><a href="View.jsp?num=<%=board.getNum()%>"><%=board.getTitle()%></a></td>
+<td><a href="View.jsp?num=<%=board.getNum()%>&pageNo=<%=criteria.getPageNo()%>"><%=board.getTitle()%></a></td>
 <td><%=board.getId()%></td>
 <td><%=board.getVisitcount()%></td>
 <td><%=board.getPostDate()%></td>
@@ -92,8 +108,28 @@ for(Board board : list) {
 </tr>
 <%} %>
 
+<!-- 페이지 블럭 생성 시작 -->
+<%
+	PageDto pageDto = new PageDto(count, criteria);
 
+%>
 
+<table width="90%">
+	<tr>
+		<td algin="center">
+		<%@include file="PageNav.jsp" %>
+		<script>
+		
+		
+		window.onload=function(){
+		var currentMenu;		
+			if(<%=pageNo %>!=null){
+				document.querySelectorAll('input[name="button"]')[<%=pageNo %>-1].style.backgroundColor="orange";
+			}
+		}
+		</script>
+		</td>
+	</tr>
 </table>
 </form>
 </body>

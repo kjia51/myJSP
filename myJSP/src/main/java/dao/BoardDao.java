@@ -138,7 +138,8 @@ public class BoardDao {
 				board = new Board();
 				board.setNum(rs.getString("num"));
 				board.setTitle(rs.getString("title"));
-				board.setContent(rs.getString("content"));
+				//줄바꿈 처리를 서버에서 해줌
+				board.setContent(rs.getString("content").replace("\r\n","<br/>"));
 				board.setId(rs.getString("id"));
 				board.setPostDate(rs.getString("postdate"));
 				board.setVisitcount(rs.getString("visitcount"));

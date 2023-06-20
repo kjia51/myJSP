@@ -21,9 +21,12 @@ float: right;
 input[type='text']{
 	visibility: hidden;
 }
-.menu-active {
-    background: orange;
+.active{
+	color:red;
+	font-size: 1.5em;
+	font-weight: bold;
 }
+
 
 </style>
 </head>
@@ -103,7 +106,7 @@ for(Board board : list) {
     %>
 <tr>
 <td colspan=5>
-<input type="button" id="writer" value="글쓰기" onclick="location.href='writing.jsp'"></button>
+<input type="button" id="writer" value="글쓰기" onclick="location.href='writing.jsp'">
 </td>
 </tr>
 <%} %>
@@ -113,24 +116,22 @@ for(Board board : list) {
 	PageDto pageDto = new PageDto(count, criteria);
 
 %>
-
+</form>
 <table width="90%">
 	<tr>
 		<td algin="center">
 		<%@include file="PageNav.jsp" %>
 		<script>
-		
-		
-		window.onload=function(){
-		var currentMenu;		
-			if(<%=pageNo %>!=null){
-				document.querySelectorAll('input[name="button"]')[<%=pageNo %>-1].style.backgroundColor="orange";
-			}
-		}
+			let btn = document.getElementsByName("button")[0];
+		    btn.onclick = (e)=>{
+				console.log(e.target);
+				}
+				
+
 		</script>
 		</td>
 	</tr>
 </table>
-</form>
+
 </body>
 </html>

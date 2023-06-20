@@ -2,6 +2,7 @@
 <%@page import="dto.PageDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,8 @@
 <title>Insert title here</title>
 <style>
 input[type='button']{
-width:50px;
-height:50px;
+width:40px;
+height:40px;
 }
 </style>
 </head>
@@ -36,11 +37,11 @@ height:50px;
 
 	if(pageDto.isPrev()){
 		//1페이지 블록
-		out.print("<input type='button' value='<<' onclick='go(1)'>");
+		out.print("<input type='submit' name='dir' value='<<' onclick='go(1)'>");
 	}
 	if(pageDto.isPrev()){
 		//이전 페이지 블록
-		out.print("<input type='button'  value='<' onclick='go("+(pageDto.getStartNo()-1)+")'>");
+		out.print("<input type='submit' name='dir' value='<' onclick='go("+(pageDto.getStartNo()-1)+")'>");
 	}
 	
 	for(int i=pageDto.getStartNo();i<=pageDto.getEndNo();i++){
@@ -49,11 +50,11 @@ height:50px;
 
 	//이후 페이지 블록
 	if(pageDto.isNext()){
-		out.print("<input type='button' value='>' onclick='go("+(pageDto.getEndNo()+1)+")'>");
+		out.print("<input type='submit' name='dir' value='>' onclick='go("+(pageDto.getEndNo()+1)+")'>");
 	}
 	//마지막 페이지 블록
 	if(pageDto.isNext()){
-		out.print("<input type='button' value='>>' onclick='go("+(pageDto.getRealEnd())+")'>");
+		out.print("<input type='submit' name='dir' value='>>' onclick='go("+(pageDto.getRealEnd())+")'>");
 	}
 %>
 

@@ -26,9 +26,9 @@ public class PageDto {
 		// 페이지 블럭의 끝 번호 구하기
 		// 7페이지 : 올림처리(7/10.0)*10 
 		endNo = (int)(Math.ceil(criteria.pageNo/10.0)*10);
-		startNo = endNo - (10-1);
+		startNo = endNo - (10-1); 
 		
-		//끝페이지 번호
+		//끝페이지 번호 
 		realEnd = (int)(Math.ceil(total/(double)criteria.getAmount())); 
 		
 		// 페이지 블럭의 끝번호를 설정

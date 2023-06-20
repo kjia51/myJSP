@@ -17,7 +17,7 @@ public class Criteria {
 			endNo = pageNo*amount;
 			startNo = pageNo*amount-(amount-1);
 		}
-	}
+	} 
 	
 	public Criteria(int pageNo, int amount) {
 		this.pageNo = pageNo;

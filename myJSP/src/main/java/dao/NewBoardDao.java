@@ -120,6 +120,29 @@ public class NewBoardDao {
 		return res;
 	}
 	
+	
+	public int totalCount(Criteria criteria){
+		int res=0;
+		String sql ="select count(*) from board";
+		if(criteria.getSearchWord()!=null && !"".equals(criteria.getSearchField())) {
+			sql += " where criteria.getSearchField() like '%"+criteria.getSearchField()+"%'";
+		}
+		
+		try(Connection conn = DBConnPool.getConnection();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+				ResultSet rs = psmt.executeQuery();){
+				while(rs.next()) {
+					res =rs.getInt(1);
+				}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
 	public Board SelectOne(String num) {
 		Board board = null;
 		String sql = "select * from board where num=?";

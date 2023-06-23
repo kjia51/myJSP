@@ -1,0 +1,8 @@
+	<!-- 서블릿 등록 -->
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/13서블릿/HelloServlet.do</url-pattern>

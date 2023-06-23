@@ -28,8 +28,8 @@
 	long creationTime = session.getCreationTime(); // 최초 요청시각
 	String creationTimeStr = sdf.format(new Date(creationTime));
 	
-	//마지막 요청 시각
-	long lastTime = session.getLastAccessedTime();
+	
+	long lastTime = session.getLastAccessedTime(); //마지막 요청 시각
 	String lastTimeStr = sdf.format(new Date(lastTime));
 %>
 

@@ -16,26 +16,23 @@
 	- 게시물의 끝 페이지 번호
 	- 이전/다음 출력여부
  -->
- <%
- 	PageDto dto = new PageDto(300, new Criteria(1));
- 
- %>
-	<c:set var="pageDto" value="<%=dto%>"></c:set>
+
+	<c:set var="pageDto" value="${pageDto }"></c:set>
 	<c:if test="${pageDto.prev }">
-		<a href='PageNavi.jsp?pageNo=1'>처음</a>
+		<a href='../mvcboard/ListController.do?pageNo=1'>처음</a>
 	</c:if>
 	<c:if test="${pageDto.prev }">
-		<a href='PageNavi.jsp?pageNo=${pageDto.startNo-1}'>이전</a>
+		<a href='../mvcboard/ListController.do?pageNo=${pageDto.startNo-1}'>이전</a>
 	</c:if>
 	<c:forEach begin="${pageDto.startNo}" end="${pageDto.endNo}" var="No">
-		<a href='PageNavi.jsp?pageNo=${No}'>${No}</a>
+		<a href='../mvcboard/ListController.do?pageNo=${No}'>${No}</a>
 	</c:forEach>
 
 	<c:if test="${pageDto.next }">
-		<a href='PageNavi.jsp?pageNo=${pageDto.endNo+1}'>다음</a>
+		<a href='../mvcboard/ListController.do?pageNo=${pageDto.endNo+1}'>다음</a>
 	</c:if>
 	<c:if test="${pageDto.next }">
-		<a href='PageNavi.jsp?pageNo=${pageDto.realEnd}'>마지막</a>
+		<a href='../mvcboard/ListController.do?pageNo=${pageDto.realEnd}'>마지막</a>
 	</c:if>
 </body>
 </html>

@@ -22,14 +22,16 @@ NewBoardDao dao = new NewBoardDao();
 //List<Board> list = dao.getList(criteria);
 List<Board> list = dao.getListPage(criteria);
 dao.updateVisitCount(num);
+int count= dao.totalCount(criteria);
 
 %>
 </head>
 <body>
 <%@ include file="Link.jsp" %>
     <h2>목록 보기(List)</h2>
-    <input type="" >
+
     <!-- 검색폼 --> 
+총 개수 : <%=dao.totalCount(criteria) %>
     <form method="get">  
     <table border="1" width="90%">
     <tr>

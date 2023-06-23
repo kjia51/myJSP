@@ -21,15 +21,10 @@ height:40px;
 
 	function go(page){
 		document.searchForm.pageNo.value=page;
-		location.href="List.jsp?pageNo="+page;
-
 		document.searchForm.submit();
 		//document.querySelectorAll('input')[2].style.backgroundColor = "green";
 	}
 
-
-	
-	
 </script>
 
 <%
@@ -37,11 +32,11 @@ height:40px;
 
 	if(pageDto.isPrev()){
 		//1페이지 블록
-		out.print("<input type='submit' name='dir' value='<<' onclick='go(1)'>");
+		out.print("<input type='button' value='<<' onclick='go(1)'>");
 	}
 	if(pageDto.isPrev()){
 		//이전 페이지 블록
-		out.print("<input type='submit' name='dir' value='<' onclick='go("+(pageDto.getStartNo()-1)+")'>");
+		out.print("<input type='button' value='<' onclick='go("+(pageDto.getStartNo()-1)+")'>");
 	}
 	
 	for(int i=pageDto.getStartNo();i<=pageDto.getEndNo();i++){
@@ -50,11 +45,11 @@ height:40px;
 
 	//이후 페이지 블록
 	if(pageDto.isNext()){
-		out.print("<input type='submit' name='dir' value='>' onclick='go("+(pageDto.getEndNo()+1)+")'>");
+		out.print("<input type='button' value='>' onclick='go("+(pageDto.getEndNo()+1)+")'>");
 	}
 	//마지막 페이지 블록
 	if(pageDto.isNext()){
-		out.print("<input type='submit' name='dir' value='>>' onclick='go("+(pageDto.getRealEnd())+")'>");
+		out.print("<input type='button' value='>>' onclick='go("+(pageDto.getRealEnd())+")'>");
 	}
 %>
 

@@ -69,6 +69,48 @@
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!--  -->
+	<!-- 서블릿 등록 -->
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<servlet-class>servlet.HelloServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/13서블릿/HelloServlet.do</url-pattern>
+	</servlet-mapping>	
 	
+	
+	<!-- MemberAuth -->
+	<servlet>
+	<servlet-name>MemberAuth</servlet-name>
+	<servlet-class>servlet.MemberAuth</servlet-class>
+	<init-param>
+		<param-name>admin_id</param-name>
+		<param-value>user02</param-value>
+	</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberAuth</servlet-name>
+		<url-pattern>/13서블릿/MemberAuth.do</url-pattern>
+	</servlet-mapping>	
+	
+	<!-- 목록보기 -->
+	<servlet>
+	<servlet-name>ListController</servlet-name>
+	<servlet-class>model2.mvcboard.ListController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListController</servlet-name>
+		<url-pattern>/mvcboard/list.do</url-pattern>
+	</servlet-mapping>	
+	
+	<!-- 글쓰기 -->
+	<servlet>
+	<servlet-name>WriteController</servlet-name>
+	<servlet-class>model2.mvcboard.WriteController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WriteController</servlet-name>
+		<url-pattern>/mvcboard/write.do</url-pattern>
+	</servlet-mapping>	
 </web-app>

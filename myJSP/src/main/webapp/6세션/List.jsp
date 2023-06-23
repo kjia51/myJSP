@@ -56,7 +56,7 @@ int count = dao.getTotalCount(criteria);
 총 건수 : <%=count%>
 <form name='searchForm'>
 <input type='text' name='pageNo' value='<%=criteria.getPageNo()%>'>
-<table border=1 width="90%">
+<table border='1' width="90%">
 <tr>
 <td>
 <select name='searchField'>
@@ -74,14 +74,17 @@ int count = dao.getTotalCount(criteria);
 </td>
 </tr>
 </table>
+</form>
 
-<table border=1 width="90%">
+<table border='1' width="90%">
 <tr>
 <th width=50px>번호</th>
 <th width=200px>제목</th>
 <th width=80px >작성자</th>
 <th width=50px>조회수</th>
 <th width=200px>작성일</th>
+<th width=200px>첨부파일</th>
+
 </tr>
 <%
 if(list.isEmpty()){
@@ -95,10 +98,11 @@ for(Board board : list) {
 %>	
 <tr>
 <td><%=board.getNum()%></td>
-<td><a href="View.jsp?num=<%=board.getNum()%>&pageNo=<%=criteria.getPageNo()%>"><%=board.getTitle()%></a></td>
+<td><a href="View.jsp?num=<%=board.getNum()%>"><%=board.getTitle()%></a></td>
 <td><%=board.getId()%></td>
 <td><%=board.getVisitcount()%></td>
 <td><%=board.getPostDate()%></td>
+<td><a href="">다운로드</a></td>
 </tr>
 <%}%>
     <% 
@@ -116,19 +120,13 @@ for(Board board : list) {
 	PageDto pageDto = new PageDto(count, criteria);
 
 %>
-</form>
+
 <table width="90%">
 	<tr>
+	
 		<td algin="center">
-		<%@include file="PageNav.jsp" %>
-		<script>
-			let btn = document.getElementsByName("button")[0];
-		    btn.onclick = (e)=>{
-				console.log(e.target);
-				}
-				
+		<%@include file="PageNav2.jsp" %>
 
-		</script>
 		</td>
 	</tr>
 </table>

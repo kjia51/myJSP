@@ -22,8 +22,6 @@ height:40px;
 
 	function go(page){
 		document.searchForm.pageNo.value=page;
-		location.href="List.jsp?pageNo="+page;
-
 		document.searchForm.submit();
 		//document.querySelectorAll('input')[2].style.backgroundColor = "green";
 	}
@@ -33,22 +31,22 @@ height:40px;
 
 
 
-	<c:set var="pageDto" value="<%=pageDto%>"></c:set>
+	<c:set var="pageDto" value="${pageDto}"></c:set>
 	<c:if test="${pageDto.prev }">
-		<a href='List2.jsp?pageNo=1'>처음</a>
+		<a href='../14MVCBoard/List.jsp?pageNo=1'>처음</a>
 	</c:if>
 	<c:if test="${pageDto.prev }">
-		<a href='List2.jsp?pageNo=${pageDto.startNo-1}'>이전</a>
+		<a href='../14MVCBoard/List.jsp?pageNo=${pageDto.startNo-1}'>이전</a>
 	</c:if>
 	<c:forEach begin="${pageDto.startNo}" end="${pageDto.endNo}" var="No">
-		<a href='List2.jsp?pageNo=${No}'>${No}</a>
+		<a href='../14MVCBoard/List.jsp?pageNo=${No}'>${No}</a>
 	</c:forEach>
 	
 	<c:if test="${pageDto.next }">
-		<a href='List2.jsp?pageNo=${pageDto.endNo+1}'>다음</a>
+		<a href='../14MVCBoard/List.jsp?pageNo=${pageDto.endNo+1}'>다음</a>
 	</c:if>
 	<c:if test="${pageDto.next }">
-		<a href='List2.jsp?pageNo=${pageDto.realEnd}'>마지막</a>
+		<a href='../14MVCBoard/List.jsp?pageNo=${pageDto.realEnd}'>마지막</a>
 	</c:if>
 
 

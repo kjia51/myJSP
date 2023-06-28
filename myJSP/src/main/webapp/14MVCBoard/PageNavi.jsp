@@ -13,7 +13,7 @@
 <body>
 <script>
 	function go(page){
-		document.searchForm.pageNo.value=page;
+		document.searchForm.pageNo.value=pageNo;
 		document.searchForm.submit();
 	}
 </script>

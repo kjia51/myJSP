@@ -10,6 +10,8 @@ import java.util.List;
 import com.library.common.ConnectionUtil;
 import com.library.vo.Book;
 
+
+
 public class BookDao {
 	/**
 	 * 도서목록 조회
@@ -36,7 +38,7 @@ public class BookDao {
 				// stmt.executeUpdate : int (몇건이 처리되었는지!!!)
 				ResultSet rs = stmt.executeQuery(sql)){
 			while(rs.next()) {
-				int no = rs.getInt(1);
+				String no = rs.getString(1);
 				String title = rs.getString(2);
 				String rentYN = rs.getString(3);
 				String author = rs.getString(4);
@@ -61,7 +63,7 @@ public class BookDao {
 		int res = 0;
 		
 		String sql = String.format
-	("insert into book values (SEQ_BOOK_NO.NEXTVAL, '%s', '%s', '%s')"
+	("insert into book values (SEQ_BOOK_NO.NEXTVAL, '%s', '%s', '%s','%s','%s','%s')"
 				, book.getTitle(), book.getRentyn(), book.getAuthor());
 
 		// 실행될 쿼리를 출력해봅니다

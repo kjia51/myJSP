@@ -14,9 +14,9 @@ public class Book {
 		this.rentyn = "N";
 	}
 	
-	public Book(int no, String title, String rentyn, String author) {
+	public Book(String no2, String title, String rentyn, String author) {
 		super();
-		this.no = no;
+		this.no = no2;
 		this.title = title;
 		this.rentyn = rentyn;
 		this.author = author;

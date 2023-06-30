@@ -27,7 +27,7 @@ public class BookDao {
 				+ "select t.*, rownum rn from("
 				+ "select no, title, author"
 				//+ ", nvl((select 대여여부 from 대여 where 도서번호 = no and 대여여부='Y'),'N') rentyn"
-				+ " from book order by no) t)";
+				+ " from book order by no desc) t)";
 		if (cri.getSearchWord()!= null && !cri.getSearchWord().equals("")) {
 			sql += " where "+cri.getSearchField() +" like '% "+ cri.getSearchWord() + " %'";
 
@@ -55,6 +55,42 @@ public class BookDao {
 		return list;
 	}
 	
+	public List<Book> getPageList(Criteria cri){
+		List<Book> list = new ArrayList<Book>();
+		
+		//String sql = "select * from book order by no";
+		String sql = 
+				"select * from ("
+				+ "select t.*, rownum rn from("
+				+ "select no, title, author"
+				+ ", nvl((select 대여여부 from 대여 where 도서번호 = no and 대여여부='Y'),'N') rentyn"
+				+ " from book ";
+		if (cri.getSearchWord()!= null && !cri.getSearchWord().equals("")) {
+			sql += " where "+cri.getSearchField() +" like '% "+ cri.getSearchWord() + " %'";
+
+		}
+			sql += "order by no) t) where rn between "+cri.getStartNo()+" and " + cri.getEndNo() + " order by rn desc";
+
+		// try ( 리소스생성 ) => try문이 종료되면서 리소스를 자동으로 반납
+		try (Connection conn = DBConnPool.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)){
+			while(rs.next()) {
+				String no = rs.getString(1);
+				String title = rs.getString(2);
+				String author = rs.getString(3);
+				String rentYN = rs.getString(4);
+				
+				Book book = new Book(no, title, author, rentYN);
+				list.add(book);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	/**
 	 * 도서 등록
 	 * @param book

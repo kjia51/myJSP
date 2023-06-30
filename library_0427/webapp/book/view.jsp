@@ -39,7 +39,7 @@
 		<td>대여</td>
 		<c:choose>
 			<c:when test="${empty dto.rentno }">
-				<td colspan="3"><button onclick="location.href='./rent.book?no=${dto.no }'">대여하기</button>
+				<td colspan="3"><button onclick="location.href='../rent.book?no=${dto.no }'">대여하기</button>
 			</c:when>
 			<c:when test="${dto.id eq sessionScope.userId }">
 				<td><button onclick="setAction('./return.book')">반납하기</button>

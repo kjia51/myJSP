@@ -21,7 +21,7 @@ public class BookService {
 		Map<String, Object> map = new HashMap<>();
 
 		// 리스트 조회
-		List<Book> list = dao.getList(cri);
+		List<Book> list = dao.getPageList(cri);
 		
 		// 총 건수
 		int totalCnt = dao.getTotalCnt(cri);

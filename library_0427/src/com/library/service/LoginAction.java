@@ -1,4 +1,4 @@
-package com.library.controller;
+package com.library.service;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.library.service.MemberService;
 import com.library.vo.Member;
 import com.utils.CookieManager;
 
 /**
  * Servlet implementation class LoginAction
  */
-@WebServlet("/login/LoginAction.do")
+@WebServlet("*.do")
 public class LoginAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -65,13 +64,10 @@ public class LoginAction extends HttpServlet {
 			if("Y".equals(member.getAdminyn())){
 				// 관리자인 경우 adminYn = Y
 				session.setAttribute("adminYn", "Y");	
+				
 				response.sendRedirect("../book/list.book");
-				//request.getRequestDispatcher("../book/list.book").forward(request, response);
-				
-			} else {
-				response.sendRedirect("../loginMember.jsp");
-				
-			}
+			} 
+			//request.getRequestDispatcher("../book/list.book").forward(request, response);
 			
 			
 		} else {

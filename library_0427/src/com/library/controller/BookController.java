@@ -59,7 +59,7 @@ public class BookController extends HttpServlet{
 			req.getRequestDispatcher("./list.book").forward(req, resp);		
 			
 		} else if(uri.indexOf("view") > 0) { 
-			System.out.println("3");
+			System.out.println("view");
 			System.out.println(uri.indexOf("view"));
 			String no = req.getParameter("no");
 			req.setAttribute("dto", bs.selectone(no));
@@ -67,12 +67,17 @@ public class BookController extends HttpServlet{
 			req.getRequestDispatcher("view.jsp").forward(req, resp);	
 			
 		} else if(uri.indexOf("write") > 0) { 
-			System.out.println("4");
+			System.out.println("write");
 			//resp.sendRedirect("write.jsp");
 			req.getRequestDispatcher("write.jsp").forward(req, resp);
 			
+		} else if(uri.indexOf("user") > 0) { 
+			System.out.println("user");
+
+			req.getRequestDispatcher("userlist.jsp").forward(req, resp);
+			
 		} else if(uri.indexOf("rent") > 0) { 
-			System.out.println("10");
+			System.out.println("rent");
 			HttpSession session = req.getSession();
 			if(session.getAttribute("userid")==null) {
 				JSFunction.alertBack(resp, "로그인 후 사용 가능");
@@ -86,7 +91,7 @@ public class BookController extends HttpServlet{
 			int res = bs.rentBook(book);
 			System.out.println(res);
 			if(res>0) {
-				JSFunction.alertLocation(resp, "./view.book?no="+book.getNo(), "대여되었습니다");
+				JSFunction.alertLocation(resp, "../view.book?no="+book.getNo(), "대여되었습니다");
 			} else {
 				JSFunction.alertBack(resp, "대여중 오류가 발생 하였습니다.");
 			}

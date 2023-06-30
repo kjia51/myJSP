@@ -17,10 +17,9 @@
     <tr>
         <td align="center">
             <select name="searchField">
-                <option value="no" ${param.searchField eq "no" ? "selected" : "" }>번호</option>
-                <option value="title" ${param.searchField eq "title" ? "selected" : "" }>제목</option>
-                <option value="author" ${param.searchField eq "author" ? "selected" : "" }>저자</option>
-                <option value="rentyn" ${param.searchField eq "rentyn" ? "selected" : "" }>대여여부</option>
+                <option value="id" ${param.searchField eq "id" ? "selected" : "" }>아이디</option>
+                <option value="name" ${param.searchField eq "name" ? "selected" : "" }>이름</option>
+                <option value="adminyn" ${param.searchField eq "adminyn" ? "selected" : "" }>관리자여부</option>
             </select>
             <input type="text" name="searchWord" value="${param.searchWord }" />
             <input type="submit" value="검색하기" />
